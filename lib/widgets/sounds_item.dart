@@ -88,29 +88,32 @@ class _SoundsItemState extends State<SoundsItem>
       child: AnimatedBuilder(
         animation: _animation,
         builder: (BuildContext context, Widget child) {
-          return Stack(
-            children: <Widget>[
-              Opacity(
-                opacity: 0.75,
-                child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/bg/bg_button.gif'),
-                          colorFilter: ColorFilter.mode(
-                              _colorTweenAnimation.value, BlendMode.hue),
-                          fit: BoxFit.cover)),
-                ),
-              ),
-              Center(
-                child: Text(
-                  widget.sound,
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor, fontSize: 12),
-                ),
-              )
-            ],
+          return ColorFiltered(
+            colorFilter:
+                ColorFilter.mode(_colorTweenAnimation.value, BlendMode.hue),
+            child: child,
           );
         },
+        child: Stack(
+          children: <Widget>[
+            Opacity(
+              opacity: 0.75,
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/bg/bg_button.gif'),
+                        fit: BoxFit.cover)),
+              ),
+            ),
+            Center(
+              child: Text(
+                widget.sound,
+                style: TextStyle(
+                    color: Theme.of(context).accentColor, fontSize: 12),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
