@@ -1,5 +1,6 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cyber_hack20/widgets/polygon_draver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -88,10 +89,13 @@ class _SoundsItemState extends State<SoundsItem>
       child: AnimatedBuilder(
         animation: _animation,
         builder: (BuildContext context, Widget child) {
-          return ColorFiltered(
-            colorFilter:
-                ColorFilter.mode(_colorTweenAnimation.value, BlendMode.hue),
-            child: child,
+          return ClipPath(
+            clipper: HexagonClipper(),
+            child: ColorFiltered(
+              colorFilter:
+                  ColorFilter.mode(_colorTweenAnimation.value, BlendMode.hue),
+              child: child,
+            ),
           );
         },
         child: Stack(
@@ -111,10 +115,29 @@ class _SoundsItemState extends State<SoundsItem>
                 style: TextStyle(
                     color: Theme.of(context).accentColor, fontSize: 12),
               ),
-            )
+            ),
+            /*Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/bg/button_border.png'),
+                      fit: BoxFit.cover)),
+            ),*/
           ],
         ),
       ),
     );
   }
+}
+
+class HexagonClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    return PolygonPathDrawer(
+            size: Size(size.width, size.height),
+            specs: PolygonPathSpecs(sides: 6, rotate: 0, borderRadiusAngle: 0))
+        .draw();
+  }
+
+  @override
+  bool shouldReclip(HexagonClipper oldClipper) => false;
 }
