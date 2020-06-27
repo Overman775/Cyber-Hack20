@@ -1,3 +1,4 @@
+import 'package:cyber_hack20/widgets/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -21,6 +22,10 @@ class Home extends StatelessWidget {
                   style: TextStyle(fontSize: 25),
                 ),
               ),
+              SizedBox(
+                height: 16,
+              ),
+              Sounds(),
             ],
           ),
           body: Container(
