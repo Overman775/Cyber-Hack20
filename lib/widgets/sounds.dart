@@ -1,3 +1,4 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:cyber_hack20/widgets/sounds_item.dart';
 import 'package:flutter/widgets.dart';
 
@@ -16,6 +17,8 @@ class Sounds extends StatelessWidget {
     'bass',
   ];
 
+  final AudioCache player = AudioCache(prefix: 'sounds/');
+
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -25,6 +28,7 @@ class Sounds extends StatelessWidget {
       children: sounds
           .map((item) => SoundsItem(
                 sound: item,
+                player: player,
               ))
           .toList(),
     );
