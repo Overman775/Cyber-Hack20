@@ -15,5 +15,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/bg
-    - assets/sounds
+    - assets/bg/
+    - assets/sounds/
