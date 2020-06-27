@@ -4,7 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+  ]);
+
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
@@ -18,9 +25,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Cyber',
+      title: 'Flutter Cyber Drum Pad',
       theme: ThemeData(
           primaryColor: Color(0xFFec03ca),
+          accentColor: Color(0xFF6fbfdb),
           scaffoldBackgroundColor: Colors.black,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: GoogleFonts.pressStart2pTextTheme(TextTheme(

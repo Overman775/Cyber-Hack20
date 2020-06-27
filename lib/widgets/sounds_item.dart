@@ -20,7 +20,11 @@ class _SoundsItemState extends State<SoundsItem> {
 
   void playStop() async {
     if (enable) {
-      final sound = await widget.player.loop('${widget.sound}.wav');
+      if (playerController != null) {
+        await playerController.stop();
+      }
+      final sound = await widget.player
+          .loop('${widget.sound}.wav', mode: PlayerMode.LOW_LATENCY);
       setState(() {
         playerController = sound;
         enable = false;
@@ -33,23 +37,81 @@ class _SoundsItemState extends State<SoundsItem> {
     }
   }
 
+/*
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.play_arrow,
-            color: enable
-                ? Theme.of(context).primaryColor
-                : Theme.of(context).primaryColor.withOpacity(0.5),
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: enable
+                    ? Theme.of(context).primaryColor.withOpacity(0.5)
+                    : Theme.of(context).primaryColor.withOpacity(0),
+                blurRadius: 20.0, // has the effect of softening the shadow
+                spreadRadius: 1.0, // has the effect of extending the shadow
+              )
+            ],
           ),
-          onPressed: playStop,
+          child: IconButton(
+            icon: Text(
+              '▶',
+              style: TextStyle(
+                  fontSize: 23,
+                  color: enable
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).primaryColor.withOpacity(0.5)),
+            ),
+            onPressed: playStop,
+          ),
+        ),
+        SizedBox(
+          height: 8,
         ),
         Text(widget.sound)
       ],
+    );
+  }*/
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      /* onTapDown: (_) {
+        playStop(true);
+      },
+      onTapCancel: () {
+        playStop(false);
+      },
+      onTapUp: (_) {
+        playStop(false);
+      },
+      onDoubleTap: () {
+        playStop(true);
+      },*/
+      onTap: playStop,
+      child: Stack(
+        children: <Widget>[
+          Opacity(
+            opacity: 0.75,
+            child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/bg/bg_button.gif'),
+                      fit: BoxFit.cover)),
+            ),
+          ),
+          Center(
+            child: Text(
+              widget.sound,
+              style:
+                  TextStyle(color: Theme.of(context).accentColor, fontSize: 12),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

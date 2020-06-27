@@ -7,7 +7,6 @@ dependencies:
   flutter:
     sdk: flutter
   pedantic: ^1.9.0
-  sliding_up_panel: ^1.0.2
   google_fonts: ^1.1.0
   audioplayers: ^0.15.1
 
