@@ -7,6 +7,8 @@ dependencies:
   flutter:
     sdk: flutter
   pedantic: ^1.9.0
+  sliding_up_panel: ^1.0.2
+  google_fonts: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +19,4 @@ flutter:
   assets:
     - assets/bg/
     - assets/sounds/
+    - assets/google_fonts/
