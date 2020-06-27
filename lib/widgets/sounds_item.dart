@@ -13,10 +13,14 @@ class SoundsItem extends StatefulWidget {
   _SoundsItemState createState() => _SoundsItemState();
 }
 
-class _SoundsItemState extends State<SoundsItem> {
+class _SoundsItemState extends State<SoundsItem>
+    with SingleTickerProviderStateMixin {
   bool enable = true;
 
   AudioPlayer playerController;
+  AnimationController _animation;
+  CurvedAnimation _curvedAnimation;
+  Animation<Color> _colorTweenAnimation;
 
   void playStop() async {
     if (enable) {
@@ -29,53 +33,42 @@ class _SoundsItemState extends State<SoundsItem> {
         playerController = sound;
         enable = false;
       });
+      _animation.forward();
     } else {
       await playerController.stop();
       setState(() {
         enable = true;
       });
+      _animation.reverse();
     }
   }
 
-/*
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: enable
-                    ? Theme.of(context).primaryColor.withOpacity(0.5)
-                    : Theme.of(context).primaryColor.withOpacity(0),
-                blurRadius: 20.0, // has the effect of softening the shadow
-                spreadRadius: 1.0, // has the effect of extending the shadow
-              )
-            ],
-          ),
-          child: IconButton(
-            icon: Text(
-              '▶',
-              style: TextStyle(
-                  fontSize: 23,
-                  color: enable
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColor.withOpacity(0.5)),
-            ),
-            onPressed: playStop,
-          ),
-        ),
-        SizedBox(
-          height: 8,
-        ),
-        Text(widget.sound)
-      ],
+  void initState() {
+    _animation = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
     );
-  }*/
+    _curvedAnimation =
+        CurvedAnimation(curve: Curves.bounceOut, parent: _animation);
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _colorTweenAnimation = ColorTween(
+            begin: Colors.transparent, end: Theme.of(context).accentColor)
+        .animate(_curvedAnimation);
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    _animation.dispose();
+    playerController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -92,25 +85,32 @@ class _SoundsItemState extends State<SoundsItem> {
         playStop(true);
       },*/
       onTap: playStop,
-      child: Stack(
-        children: <Widget>[
-          Opacity(
-            opacity: 0.75,
-            child: Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/bg/bg_button.gif'),
-                      fit: BoxFit.cover)),
-            ),
-          ),
-          Center(
-            child: Text(
-              widget.sound,
-              style:
-                  TextStyle(color: Theme.of(context).accentColor, fontSize: 12),
-            ),
-          )
-        ],
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (BuildContext context, Widget child) {
+          return Stack(
+            children: <Widget>[
+              Opacity(
+                opacity: 0.75,
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/bg/bg_button.gif'),
+                          colorFilter: ColorFilter.mode(
+                              _colorTweenAnimation.value, BlendMode.hue),
+                          fit: BoxFit.cover)),
+                ),
+              ),
+              Center(
+                child: Text(
+                  widget.sound,
+                  style: TextStyle(
+                      color: Theme.of(context).accentColor, fontSize: 12),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
