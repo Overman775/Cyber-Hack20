@@ -32,7 +32,7 @@ class SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
     'solo',
   ];
 
-  List<String> get files => sounds.map((sound) => sound + '.wav').toList();
+  List<String> get files => sounds.map((sound) => sound + '.mp3').toList();
   final AudioCache player = AudioCache(prefix: 'sounds/');
 
   AnimationController _animation;

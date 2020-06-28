@@ -31,7 +31,7 @@ class _SoundsItemState extends State<SoundsItem>
         await playerController.stop();
       }
       final sound = await widget.player
-          .loop('${widget.sound}.wav', mode: PlayerMode.LOW_LATENCY);
+          .loop('${widget.sound}.mp3', mode: PlayerMode.LOW_LATENCY);
       setState(() {
         playerController = sound;
         enable = false;
