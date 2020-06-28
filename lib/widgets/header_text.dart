@@ -11,7 +11,7 @@ class HeaderText extends StatefulWidget {
 }
 
 class _HeaderTextState extends State<HeaderText> {
-  String defaultText = '#cyber_vision ';
+  String defaultText = '#cyber_vision V1.0';
   String text;
 
   @override
@@ -25,7 +25,7 @@ class _HeaderTextState extends State<HeaderText> {
       onFinished: () async {
         await Future.delayed(Duration(seconds: 10));
         setState(() {
-          text = '#cYbe#_VI_io. ';
+          text = '#cYbe#_VI_io. W0.24';
         });
         await Future.delayed(Duration(milliseconds: 1200));
         setState(() {
