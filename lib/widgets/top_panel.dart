@@ -59,16 +59,20 @@ class TopPaneltem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPress,
-      child: Container(
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/bg/bg_button.gif'),
-                fit: BoxFit.cover)),
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Theme.of(context).accentColor, fontSize: 10),
+      child: Opacity(
+        opacity: 0.75,
+        child: Container(
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/bg/bg_button.gif'),
+                  fit: BoxFit.cover)),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style:
+                TextStyle(color: Theme.of(context).accentColor, fontSize: 10),
+          ),
         ),
       ),
     );
