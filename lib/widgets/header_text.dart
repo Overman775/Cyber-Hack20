@@ -27,7 +27,7 @@ class _HeaderTextState extends State<HeaderText> {
         setState(() {
           text = '#cYbe#_VI_io. ';
         });
-        await Future.delayed(Duration(milliseconds: 1500));
+        await Future.delayed(Duration(milliseconds: 1200));
         setState(() {
           text = defaultText;
         });
