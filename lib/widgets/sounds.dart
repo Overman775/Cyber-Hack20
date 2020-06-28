@@ -1,12 +1,18 @@
 import 'dart:io';
+import 'dart:math' as math show Random;
 
 import 'package:audioplayers/audio_cache.dart';
 import 'package:cyber_hack20/widgets/sounds_item.dart';
 import 'package:flutter/widgets.dart';
 
-class Sounds extends StatelessWidget {
+class Sounds extends StatefulWidget {
   Sounds({Key key}) : super(key: key);
 
+  @override
+  _SoundsState createState() => _SoundsState();
+}
+
+class _SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
   final List<String> sounds = [
     'theme',
     'chords',
@@ -28,8 +34,38 @@ class Sounds extends StatelessWidget {
   ];
 
   List<String> get files => sounds.map((sound) => sound + '.wav').toList();
-
   final AudioCache player = AudioCache(prefix: 'sounds/');
+
+  AnimationController _animation;
+
+  @override
+  void initState() {
+    _animation = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+
+    _generateanimationMap();
+    super.initState();
+  }
+
+  final Map<String, CurvedAnimation> _animationMap = {};
+
+  void _generateanimationMap() {
+    sounds.forEach((sound) {
+      _animationMap[sound] = randomDelayedAnimation();
+    });
+  }
+
+  CurvedAnimation randomDelayedAnimation() {
+    final random = math.Random();
+    final delay = 1 / sounds.length;
+    final index = random.nextInt(sounds.length);
+    return CurvedAnimation(
+        parent: _animation,
+        curve: Interval(index * delay, (index + 1) * delay,
+            curve: Curves.fastOutSlowIn));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +76,7 @@ class Sounds extends StatelessWidget {
               snapshot.hasData == null) {
             return SizedBox.shrink();
           }
+          _animation.forward();
           return Container(
             child: GridView.count(
               crossAxisCount: 6,
@@ -49,10 +86,20 @@ class Sounds extends StatelessWidget {
               crossAxisSpacing: 16.0,
               physics: const NeverScrollableScrollPhysics(),
               children: sounds
-                  .map((item) => SoundsItem(
-                        sound: item,
-                        player: player,
-                        needPlay: soundsNeedPlay.contains(item),
+                  .map((item) => AnimatedBuilder(
+                        animation: _animation,
+                        builder: (BuildContext context, Widget child) {
+                          return Transform.scale(
+                            scale: Tween(begin: 0.0, end: 1.0)
+                                .evaluate(_animationMap[item]),
+                            child: child,
+                          );
+                        },
+                        child: SoundsItem(
+                          sound: item,
+                          player: player,
+                          needPlay: soundsNeedPlay.contains(item),
+                        ),
                       ))
                   .toList(),
             ),
