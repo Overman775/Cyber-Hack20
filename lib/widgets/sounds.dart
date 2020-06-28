@@ -61,10 +61,11 @@ class SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
 
   void _generateanimationMap() {
     sounds.forEach((sound) {
-      _animationMap[sound] = randomDelayedAnimation();
+      //_animationMap[sound] = randomDelayedAnimation();
+      _animationMap[sound] = lineDelayedAnimation(sound);
     });
   }
-
+/*
   CurvedAnimation randomDelayedAnimation() {
     final random = math.Random();
     final delay = 1 / sounds.length;
@@ -73,6 +74,23 @@ class SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
         parent: _animation,
         curve: Interval(index * delay, (index + 1) * delay,
             curve: Curves.fastOutSlowIn));
+  }*/
+
+  CurvedAnimation lineDelayedAnimation(String item) {
+    final delay = 1 / sounds.length;
+    final index = sounds.indexOf(item);
+    if (index < 6) {
+      return CurvedAnimation(
+          parent: _animation,
+          curve: Interval(index * delay, (index + 1) * delay,
+              curve: Curves.fastOutSlowIn));
+    } else {
+      final revesIndex = (index - 11) * -1;
+      return CurvedAnimation(
+          parent: _animation,
+          curve: Interval(revesIndex * delay, (revesIndex + 1) * delay,
+              curve: Curves.fastOutSlowIn));
+    }
   }
 
   @override
