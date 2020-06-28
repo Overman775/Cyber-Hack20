@@ -69,10 +69,17 @@ class _SoundsItemState extends State<SoundsItem>
     super.didChangeDependencies();
   }
 
+  Future disposePlayer() async {
+    if (playerController != null) {
+      await playerController.stop();
+      await playerController.dispose();
+    }
+  }
+
   @override
   void dispose() {
+    disposePlayer();
     _animation.dispose();
-    playerController.dispose();
     super.dispose();
   }
 
