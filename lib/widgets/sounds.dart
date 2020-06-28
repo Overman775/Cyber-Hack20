@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math' as math show Random;
 
 import 'package:audioplayers/audio_cache.dart';
 import 'package:cyber_hack20/widgets/sounds_item.dart';
@@ -61,20 +60,9 @@ class SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
 
   void _generateanimationMap() {
     sounds.forEach((sound) {
-      //_animationMap[sound] = randomDelayedAnimation();
       _animationMap[sound] = lineDelayedAnimation(sound);
     });
   }
-/*
-  CurvedAnimation randomDelayedAnimation() {
-    final random = math.Random();
-    final delay = 1 / sounds.length;
-    final index = random.nextInt(sounds.length);
-    return CurvedAnimation(
-        parent: _animation,
-        curve: Interval(index * delay, (index + 1) * delay,
-            curve: Curves.fastOutSlowIn));
-  }*/
 
   CurvedAnimation lineDelayedAnimation(String item) {
     final delay = 1 / sounds.length;
@@ -83,13 +71,13 @@ class SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
       return CurvedAnimation(
           parent: _animation,
           curve: Interval(index * delay, (index + 1) * delay,
-              curve: Curves.fastOutSlowIn));
+              curve: Curves.easeInOut));
     } else {
       final revesIndex = (index - 11) * -1;
       return CurvedAnimation(
           parent: _animation,
           curve: Interval(revesIndex * delay, (revesIndex + 1) * delay,
-              curve: Curves.fastOutSlowIn));
+              curve: Curves.easeInOut));
     }
   }
 

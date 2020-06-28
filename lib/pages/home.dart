@@ -1,5 +1,6 @@
 import 'package:cyber_hack20/widgets/background.dart';
 import 'package:cyber_hack20/widgets/flash_line.dart';
+import 'package:cyber_hack20/widgets/header_text.dart';
 import 'package:cyber_hack20/widgets/sounds.dart';
 import 'package:cyber_hack20/widgets/top_panel.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +28,7 @@ class Home extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      ' #cyber_drum_Pad_',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    FlashLine()
-                  ],
+                  children: <Widget>[HeaderText(), FlashLine()],
                 ),
                 const SizedBox(
                   height: 32,
