@@ -68,7 +68,7 @@ class TopPaneltem extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(color: Theme.of(context).accentColor, fontSize: 12),
+          style: TextStyle(color: Theme.of(context).accentColor, fontSize: 10),
         ),
       ),
     );
