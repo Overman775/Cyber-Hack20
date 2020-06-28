@@ -24,7 +24,7 @@ class _TopPanelState extends State<TopPanel> {
       child: Row(
         children: <Widget>[
           TopPaneltem(
-            text: 'Change\nBG',
+            text: 'Change\nview',
             onPress: widget.bgKey.currentState.changeBg,
           ),
           SizedBox(
