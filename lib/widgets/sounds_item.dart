@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SoundsItem extends StatefulWidget {
-  const SoundsItem({this.sound, this.player, key}) : super(key: key);
+  const SoundsItem({this.sound, this.player, this.needPlay = false, Key key})
+      : super(key: key);
 
   final String sound;
   final AudioCache player;
+  final bool needPlay;
 
   @override
   _SoundsItemState createState() => _SoundsItemState();
@@ -52,6 +54,10 @@ class _SoundsItemState extends State<SoundsItem>
     );
     _curvedAnimation =
         CurvedAnimation(curve: Curves.bounceOut, parent: _animation);
+
+    if (widget.needPlay) {
+      playStop();
+    }
     super.initState();
   }
 

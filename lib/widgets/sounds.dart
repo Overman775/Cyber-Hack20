@@ -22,6 +22,11 @@ class Sounds extends StatelessWidget {
     'slow',
   ];
 
+  final List<String> soundsNeedPlay = [
+    'chill',
+    'solo',
+  ];
+
   List<String> get files => sounds.map((sound) => sound + '.wav').toList();
 
   final AudioCache player = AudioCache(prefix: 'sounds/');
@@ -47,6 +52,7 @@ class Sounds extends StatelessWidget {
                   .map((item) => SoundsItem(
                         sound: item,
                         player: player,
+                        needPlay: soundsNeedPlay.contains(item),
                       ))
                   .toList(),
             ),
