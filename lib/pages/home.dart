@@ -1,3 +1,4 @@
+import 'package:cyber_hack20/widgets/background.dart';
 import 'package:cyber_hack20/widgets/sounds.dart';
 import 'package:cyber_hack20/widgets/top_panel.dart';
 import 'package:flutter/material.dart';
@@ -9,27 +10,26 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final soundsKey = GlobalKey<SoundsState>();
+    final bgKey = GlobalKey<BackgroundState>();
     return Scaffold(
       body: SafeArea(
         child: Stack(
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/bg/1.gif'), fit: BoxFit.cover)),
+            Background(
+              key: bgKey,
             ),
             Column(
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
-                Center(
+                const Center(
                   child: Text(
                     ' #cyber_drum_Pad »',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 32,
                 ),
                 Expanded(
@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                 )),
               ],
             ),
-            TopPanel(soundsKey: soundsKey),
+            TopPanel(soundsKey: soundsKey, bgKey: bgKey),
           ],
         ),
       ),

@@ -1,11 +1,13 @@
+import 'package:cyber_hack20/widgets/background.dart';
 import 'package:cyber_hack20/widgets/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TopPanel extends StatefulWidget {
-  const TopPanel({this.soundsKey, key}) : super(key: key);
+  const TopPanel({this.soundsKey, this.bgKey, Key key}) : super(key: key);
 
   final GlobalKey<SoundsState> soundsKey;
+  final GlobalKey<BackgroundState> bgKey;
 
   @override
   _TopPanelState createState() => _TopPanelState();
@@ -22,6 +24,13 @@ class _TopPanelState extends State<TopPanel> {
       child: Row(
         children: <Widget>[
           TopPaneltem(
+            text: 'Change\nBG',
+            onPress: widget.bgKey.currentState.changeBg,
+          ),
+          SizedBox(
+            width: 16,
+          ),
+          TopPaneltem(
             text: hided ? 'Show\npanel' : 'Hide\npanel',
             onPress: () async {
               await widget.soundsKey.currentState.hideShowPanel();
@@ -29,7 +38,7 @@ class _TopPanelState extends State<TopPanel> {
                 hided = !hided;
               });
             },
-          )
+          ),
         ],
       ),
     );
