@@ -129,12 +129,12 @@ class _SoundsItemState extends State<SoundsItem>
                     color: Theme.of(context).accentColor, fontSize: 12),
               ),
             ),
-            /*Container(
+            Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/bg/button_border.png'),
-                      fit: BoxFit.cover)),
-            ),*/
+                      fit: BoxFit.contain)),
+            ),
           ],
         ),
       ),
