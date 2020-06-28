@@ -9,10 +9,10 @@ class Sounds extends StatefulWidget {
   Sounds({Key key}) : super(key: key);
 
   @override
-  _SoundsState createState() => _SoundsState();
+  SoundsState createState() => SoundsState();
 }
 
-class _SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
+class SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
   final List<String> sounds = [
     'theme',
     'chords',
@@ -47,6 +47,14 @@ class _SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
 
     _generateanimationMap();
     super.initState();
+  }
+
+  void hideShowPanel() {
+    if (_animation.value > 0) {
+      _animation.reverse();
+    } else {
+      _animation.forward();
+    }
   }
 
   final Map<String, CurvedAnimation> _animationMap = {};

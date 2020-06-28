@@ -1,4 +1,5 @@
 import 'package:cyber_hack20/widgets/sounds.dart';
+import 'package:cyber_hack20/widgets/top_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,6 +8,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final soundsKey = GlobalKey<SoundsState>();
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -30,9 +32,13 @@ class Home extends StatelessWidget {
                 SizedBox(
                   height: 32,
                 ),
-                Expanded(child: Sounds()),
+                Expanded(
+                    child: Sounds(
+                  key: soundsKey,
+                )),
               ],
             ),
+            TopPanel(soundsKey: soundsKey),
           ],
         ),
       ),
