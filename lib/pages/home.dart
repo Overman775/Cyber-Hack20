@@ -1,4 +1,5 @@
 import 'package:cyber_hack20/widgets/background.dart';
+import 'package:cyber_hack20/widgets/flash_line.dart';
 import 'package:cyber_hack20/widgets/sounds.dart';
 import 'package:cyber_hack20/widgets/top_panel.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +20,20 @@ class Home extends StatelessWidget {
               key: bgKey,
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const SizedBox(
                   height: 16,
                 ),
-                const Center(
-                  child: Text(
-                    ' #cyber_drum_Pad »',
-                    style: TextStyle(fontSize: 18),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      ' #cyber_drum_Pad_',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    FlashLine()
+                  ],
                 ),
                 const SizedBox(
                   height: 32,
