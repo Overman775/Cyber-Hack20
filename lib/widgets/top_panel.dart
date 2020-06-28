@@ -23,8 +23,8 @@ class _TopPanelState extends State<TopPanel> {
         children: <Widget>[
           TopPaneltem(
             text: hided ? 'Show\npanel' : 'Hide\npanel',
-            onPress: () {
-              widget.soundsKey.currentState.hideShowPanel();
+            onPress: () async {
+              await widget.soundsKey.currentState.hideShowPanel();
               setState(() {
                 hided = !hided;
               });

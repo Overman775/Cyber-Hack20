@@ -49,11 +49,11 @@ class SoundsState extends State<Sounds> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
-  void hideShowPanel() {
+  void hideShowPanel() async {
     if (_animation.value > 0) {
-      _animation.reverse();
+      await _animation.reverse();
     } else {
-      _animation.forward();
+      await _animation.forward();
     }
   }
 
