@@ -2,7 +2,7 @@
 <font color="#c930cb">#cyber_vision V1.0</font>
 </h1>
 
-|<img src="./screenshoots/present.jpg" width="400" />|<font size="+2"><p align="left">Immerse yourself in the world of the future? It's real!</br> Thanks to this application, the world of the future can become closer, and your limitless imagination will make it the way you see it. Flying into space, cyberspace, robotics and other achievements of progress will sparkle with new colors in your head… </br></br>Listen to the future, imagine the future, create it!</p></font>|
+|<img src="./screenshoots/present.jpg" width="600" />|<font size="+2"><p align="left">Immerse yourself in the world of the future? It's real!</br> Thanks to this application, the world of the future can become closer, and your limitless imagination will make it the way you see it. Flying into space, cyberspace, robotics and other achievements of progress will sparkle with new colors in your head… </br></br>Listen to the future, imagine the future, create it!</p></font>|
 |---|---|
 
 ## How To Use
@@ -14,7 +14,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [F
 $ git clone https://github.com/Overman775/Cyber-Hack20.git
 
 # Go into the repository
-$ cd fluttery-todo
+$ cd Cyber-Hack20
 
 # Install dependencies
 $ flutter packages get
