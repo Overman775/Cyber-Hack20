@@ -1,5 +1,5 @@
-name: cyber_hack20
-description: Flutter cyber hack20.
+name: cyber_vision
+description: Flutter cyber vision.
 environment:
   sdk: ">=2.7.0 <3.0.0"
 

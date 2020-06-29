@@ -1,5 +1,5 @@
-import 'package:cyber_hack20/widgets/background.dart';
-import 'package:cyber_hack20/widgets/sounds.dart';
+import 'package:cyber_vision/widgets/background.dart';
+import 'package:cyber_vision/widgets/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

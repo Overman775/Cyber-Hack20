@@ -1,4 +1,4 @@
-package com.example.cyber_hack20
+package com.example.cyber_vision
 
 import io.flutter.embedding.android.FlutterActivity
 

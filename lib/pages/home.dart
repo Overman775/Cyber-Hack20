@@ -1,8 +1,8 @@
-import 'package:cyber_hack20/widgets/background.dart';
-import 'package:cyber_hack20/widgets/flash_line.dart';
-import 'package:cyber_hack20/widgets/header_text.dart';
-import 'package:cyber_hack20/widgets/sounds.dart';
-import 'package:cyber_hack20/widgets/top_panel.dart';
+import 'package:cyber_vision/widgets/background.dart';
+import 'package:cyber_vision/widgets/flash_line.dart';
+import 'package:cyber_vision/widgets/header_text.dart';
+import 'package:cyber_vision/widgets/sounds.dart';
+import 'package:cyber_vision/widgets/top_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

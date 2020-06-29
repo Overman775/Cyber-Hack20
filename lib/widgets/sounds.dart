@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:audioplayers/audio_cache.dart';
-import 'package:cyber_hack20/widgets/sounds_item.dart';
+import 'package:cyber_vision/widgets/sounds_item.dart';
 import 'package:flutter/widgets.dart';
 
 class Sounds extends StatefulWidget {
