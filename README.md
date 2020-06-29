@@ -23,6 +23,10 @@ $ flutter packages get
 $ flutter run
 ```
 
+## Video
+
+ <a href="https://youtu.be/c76FxLpVHPg">https://youtu.be/c76FxLpVHPg</a>
+
 ## Screenshots
 <details>
   <summary>Screenshots</summary>
